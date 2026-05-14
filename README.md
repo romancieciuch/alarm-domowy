@@ -4,15 +4,17 @@ Alarm domowy z wykorzystaniem Arduino UNO.
 ## Licencja
 Creative Commons Zero (CC0)
 
-## Szybki podgląd w Wokwi
+## Projekt w Wokwi
 <https://wokwi.com/projects/463992320389011457>
 
 ## Zawartość repozytorium
 - **Kod programu** - pliki źródłowe
 - **Instrukcja** - pliki z instrukcją jak odtworzyć projekt krok po kroku
 - **Obrazki** - zrzuty ekranu użyte do stworzenia instrukcji
+- **Wideo** - film oprowadzający po projekcie
 
-## Film wprowadzający
+## Film oprowadzający po projekcie
+<https://youtu.be/s39St69Hleg>
 
 ## Gotowy system
 ![Alarm domowy](https://github.com/romancieciuch/alarm-domowy/blob/main/Obrazki/09-system.png)

@@ -1,6 +1,12 @@
 //////////////////////////////////////////////////////////////////////////////////////
 // Projekt: Alarm domowy
 
+// Licencja: Creative Commons Zero (CC0)
+
+// Wokwi: https://wokwi.com/projects/463992320389011457
+// Repozytorium GitHub: https://github.com/romancieciuch/alarm-domowy
+// Film oprowadzający po projekcie: https://youtu.be/s39St69Hleg
+
 // Wymagania:
 // - Płytka Arduino
 // - Płytka stykowa
@@ -82,7 +88,7 @@ char keypad_keys[4][4] = {
 
 
 //////////////////////////////////////////////////////////////////////////////////////
-// LCD 
+// LCD
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h> // Doinstalować bibliotekę LiquidCrystal_I2C
 LiquidCrystal_I2C lcd(0x27, 16, 2);
@@ -112,7 +118,7 @@ unsigned long t_alarm = 0;
 
 void setup () {
   Serial.begin(9600);
-  
+
   setup_led();
   setup_buzzer();
   if (RTC_ON) setup_rtc();
@@ -143,7 +149,7 @@ void loop () {
           STAN_ALARMU = UZBROJONY;
           save_state(STATE_ARMED);
           log("UZBROJONY");
-          
+
           lcd_locked();
           buzzer_beep();
         }
@@ -154,7 +160,7 @@ void loop () {
       case 'B':
         if (STAN_ALARMU == WYLACZONY) {
           phrase = "";
-          
+
           STAN_ALARMU = ZMIANA_HASLA;
           log("ZMIANA_HASLA");
 
@@ -185,7 +191,7 @@ void loop () {
       case 'D':
         if (STAN_ALARMU == WYLACZONY) {
           phrase = "";
-          
+
           passcode = default_passcode;
           save_pin(passcode);
 
@@ -215,7 +221,7 @@ void loop () {
         } else if (STAN_ALARMU == ZMIANA_HASLA) {
 
           if (phrase.length() < 4) {
-            log("ZA KROTKIE HASLO: " + passcode);  
+            log("ZA KROTKIE HASLO: " + passcode);
             lcd_password_too_short();
             phrase = "";
             break;
@@ -223,7 +229,7 @@ void loop () {
 
           passcode = phrase;
           save_pin(passcode);
-          
+
           STAN_ALARMU = WYLACZONY;
           log("NOWE HASLO " + passcode);
 
@@ -233,7 +239,7 @@ void loop () {
           buzzer_beep();
           buzzer_beep();
           buzzer_beep();
-        
+
         } else if (STAN_ALARMU == UZBROJONY || STAN_ALARMU == WYKRYTO_RUCH || STAN_ALARMU == ALARM) {
 
           if (phrase == passcode) {
@@ -244,7 +250,7 @@ void loop () {
             log("POPRAWNE HASLO -> ALARM WYLACZONY");
 
             lcd_home();
-            
+
             buzzer_beep();
             buzzer_beep();
 
@@ -283,7 +289,7 @@ void loop () {
     led_armed();
   }
 
-  
+
   bool motion_detected = pir();
   if (STAN_ALARMU == UZBROJONY && motion_detected) {
     t_alarm = millis();
@@ -343,7 +349,7 @@ void lcd_home () {
 
 void lcd_keys_info () {
   lcd_reset();
-  
+
   lcd.setCursor(0, 0);
   lcd.print("A: Uzb | B: Has");
 
@@ -353,7 +359,7 @@ void lcd_keys_info () {
 
 void lcd_locked () {
   lcd_reset();
-  
+
   lcd.setCursor(0, 0);
   lcd.print("  [UZBROJONY] ");
 
@@ -364,7 +370,7 @@ void lcd_locked () {
 
 void lcd_password_change () {
   lcd_reset();
-  
+
   lcd.setCursor(0, 0);
   lcd.print(" [ZMIANA HASLA] ");
 
@@ -375,7 +381,7 @@ void lcd_password_change () {
 
 void lcd_password_changed () {
   lcd_reset();
-  
+
   lcd.setCursor(0, 0);
   lcd.print(" [ZMIANA HASLA] ");
 
@@ -385,7 +391,7 @@ void lcd_password_changed () {
 
 void lcd_password_too_short () {
   lcd_reset();
-  
+
   lcd.setCursor(0, 0);
   lcd.print(" [ZMIANA HASLA] ");
 
@@ -395,7 +401,7 @@ void lcd_password_too_short () {
 
 void lcd_factory_defaults () {
   lcd_reset();
-  
+
   lcd.setCursor(0, 0);
   lcd.print("[RES DO UST FAB]");
 
@@ -406,7 +412,7 @@ void lcd_factory_defaults () {
 
 void lcd_alarm () {
   lcd_reset();
-  
+
   lcd.setCursor(0, 0);
   lcd.print("[!!! ALARM !!!]");
 
@@ -417,7 +423,7 @@ void lcd_alarm () {
 
 void lcd_motion_detected () {
   lcd_reset();
-  
+
   lcd.setCursor(0, 0);
   lcd.print(" [WYKRYTO RUCH] ");
 
@@ -480,22 +486,22 @@ bool pir () {
     Serial.println("RUCH!");
     return true;
   }
-    
+
   return false;
 }
 
 
 void setup_rtc () {
-  
+
   if (!rtc.begin()) {
-    Serial.println("Nie wykryto RTC DS3231");
+    Serial.println("Nie wykryto RTC");
     while (1);
   }
 
   if (RESET_TIME)
     rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
 
-  Serial.println("RTC DS3231 OK");
+  Serial.println("RTC OK");
 }
 
 String get_time () {
@@ -526,7 +532,7 @@ void setup_buzzer () {
 
 void buzzer_alarm () {
   if (millis() - t_buzzer < 500) return;
-  
+
   t_buzzer = millis();
 
   static bool state = false;
