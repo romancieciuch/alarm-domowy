@@ -22,7 +22,7 @@ Creative Commons Zero (CC0)
 ## Lista zakupów
 | Element | Model | Funkcja | Ilość sztuk |
 |---------|-------|---------|-------------|
-| Arduino | UNO R4 WiFi | Sterownik główny | 1 |
+| Arduino | UNO lub zamiennik | Sterownik główny | 1 |
 | PIR | HC-SR501 | Detekcja ruchu | 1 |
 | RTC | DS1307 / DS3231 | Data i godzina | 1 |
 | LCD | 1602 I2C | Interfejs użytkownika | 1 |
