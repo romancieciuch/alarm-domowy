@@ -33,3 +33,6 @@ Creative Commons Zero (CC0)
 | Buzzer | buzzer z generatorem 5V 12mm - THT | Dźwięki alarmu | 1 |
 | Płytka stykowa | Duża | Połączenie elementów w układ | 1 |
 | Kable połączeniowe | Różne długości, wejścia męsko – męskie, męsko - żeńskie | Połączenia elektryczne pomiędzy elementami układu | 1 |
+
+## Zdjęcia z fizycznego projektu
+Do końca tygodnia będą
