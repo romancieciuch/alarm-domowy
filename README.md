@@ -18,11 +18,6 @@ Creative Commons Zero (CC0)
 ![Alarm domowy](https://github.com/romancieciuch/alarm-domowy/blob/main/Obrazki/09-system.png)
 
 ## Lista zakupów
-| Imię | Wiek | Miasto |
-|------|------|---------|
-| Roman | 16 | Białystok |
-| Anna | 22 | Warszawa |
-
 | Element | Model | Funkcja | Ilość sztuk |
 |---------|-------|---------|-------------|
 | Arduino | UNO R4 WiFi | Sterownik główny | 1 |
